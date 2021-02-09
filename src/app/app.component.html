@@ -1,0 +1,33 @@
+<div id='app'>
+  <div id="titleContainer"><h1>情绪识别器<span *ngIf='training'>(训练中)</span></h1></div>
+  <div id="mainContainer">
+      <div id="videoContainer">
+          <video #videoElement autoplay=1 id="videoElement" [class.active]='video_on'></video>
+          <button (click)='startVideo()' *ngIf='!video_on' id="startVideo">开启摄像头</button>
+      </div>
+      <span id="leftOrigin"></span>
+      <div class="seperator" id="leftSeperator"></div>
+    
+      <div id="categoryContainer">
+          <div *ngFor="let category of categories" class="category" (click)="startCapture(category)">
+            <div class="categoryHeader"><span class="leftAnchor"></span><div>{{ category.name }}</div></div> 
+            <div class="thumbnailContainer">
+                <img *ngFor="let imgSrc of category.thumbnailImages" [src]="imgSrc" width=30 height=30>
+                <div *ngIf="category.thumbnailImages.length > 0" class="thumbnailNums">{{ category.images.length }}</div>
+            </div>
+            <button class="captureButton"><img src="./assets/img/camera.png" class="captureImage"/></button>
+          </div>
+      </div>
+      <div class="seperator" id="rightSeperator"></div>
+      <span id="rightOrigin"></span>
+      <div id="resultContainer" [className]='result.className' >{{ result.name }} 概率:{{ result.prob }}%</div>
+  </div>
+  <div id="copyrightContainer">
+      <div>menhera 酱版权属于<a href="https://twitter.com/pomujoynet1">pomujoynet1</a></div>
+      <div>
+          <a id="wechat"><img src="./assets/img/qrcode.jpg" id="qrcode"><img src="./assets/img/tencent wechat.svg.png" class="socialNetwork"/></a>
+          <a href="https://space.bilibili.com/315839232/#/"><img src="./assets/img/bilibili B.svg.png" class="socialNetwork"/></a>
+          <a href="https://www.zhihu.com/people/CodingWave/"><img src="./assets/img/zhihu.svg.png" class="socialNetwork"/></a>
+      </div>
+    </div>
+</div>
